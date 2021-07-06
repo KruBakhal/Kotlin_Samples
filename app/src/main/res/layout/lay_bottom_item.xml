@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="@dimen/_100sdp">
 
     <ImageView
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/_9sdp"
+        android:layout_margin="@dimen/_10sdp"
         android:paddingBottom="@dimen/_2sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,41 +34,49 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
+            android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_ac_ad_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <ImageView
             android:id="@+id/image"
             android:layout_width="@dimen/_53sdp"
             android:layout_height="@dimen/_53sdp"
-            android:layout_margin="@dimen/_10sdp"
-            android:src="@drawable/ic_ac_ad_text"
+            android:scaleType="fitXY"
+            android:src="@drawable/thumb_small"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/text"
+            app:layout_constraintEnd_toStartOf="@+id/text"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <TextView
             android:id="@+id/text"
-            android:layout_width="0dp"
+            android:layout_width="125dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_3sdp"
+            android:maxLines="2"
             android:textColor="@color/black"
-            android:textSize="@dimen/_12sdp"
+            android:textSize="@dimen/_11sdp"
             app:layout_constraintBottom_toTopOf="@+id/rating"
             app:layout_constraintEnd_toStartOf="@+id/download"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/image"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/image"
             app:layout_constraintVertical_bias="0.5" />
 
         <com.chaek.android.RatingBar
             android:id="@+id/rating"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/text1"
+            app:layout_constraintEnd_toEndOf="@+id/text"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/text"
+            app:layout_constraintTop_toBottomOf="@+id/text"
             app:rating_flag="TEN"
             app:rating_star_color="#f9d02f"
             app:rating_star_empty_color="#c2c0c0"
@@ -76,38 +84,32 @@
             app:rating_star_margin="@dimen/_3sdp"
             app:rating_star_tint="true"
             app:rating_star_width="@dimen/_13sdp"
-            app:rating_start_count="5"
-            app:layout_constraintBottom_toTopOf="@+id/text1"
-            app:layout_constraintEnd_toStartOf="@+id/download"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/image"
-            app:layout_constraintTop_toBottomOf="@+id/text" />
+            app:rating_start_count="5" />
 
         <TextView
             android:id="@+id/text1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_3sdp"
-            android:layout_marginBottom="@dimen/_3sdp"
             android:textColor="@color/black"
-            android:textSize="@dimen/_12sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/image"
+            app:layout_constraintEnd_toEndOf="@+id/download"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintStart_toStartOf="@+id/rating"
             app:layout_constraintTop_toBottomOf="@+id/rating" />
 
         <FrameLayout
             android:id="@+id/download"
-            android:layout_width="@dimen/_85sdp"
+            android:layout_width="@dimen/_80sdp"
             android:layout_height="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_9sdp"
             android:background="@drawable/bg_shape_tube"
             android:text="Download"
-            app:layout_constraintBottom_toTopOf="@+id/text1"
+            app:layout_constraintBottom_toBottomOf="@+id/image"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.8">
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/text"
+            app:layout_constraintTop_toTopOf="@+id/image">
 
             <TextView
                 android:id="@+id/txt"

@@ -14,26 +14,26 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.chaek.android.RatingBar
 import com.example.kotlin_samples.Model.api.SubCategory
-import com.example.kotlin_samples.Model.api.SubCategory__1
 import com.example.kotlin_samples.R
 
-class BottomAdapter(var context: Context) : RecyclerView.Adapter<BottomAdapter.MiddleVH>() {
+class BottomAdapter(var context: Context) : RecyclerView.Adapter<BottomAdapter.BottomVH>() {
 
-    var mutableList: MutableList<SubCategory__1> = ArrayList()
+    var mutableList: MutableList<SubCategory> = ArrayList()
 
-    fun renewItems(Datums: MutableList<SubCategory__1>) {
-        mutableList = Datums
+    fun renewItems(Datums: MutableList<SubCategory>) {
+        mutableList = ArrayList()
+        mutableList.addAll(Datums)
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MiddleVH {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BottomVH {
 
         var inflater =
             LayoutInflater.from(parent.context).inflate(R.layout.lay_bottom_item, parent, false)
-        return MiddleVH(inflater)
+        return BottomVH(inflater)
     }
 
-    override fun onBindViewHolder(viewHolder: MiddleVH, position: Int) {
+    override fun onBindViewHolder(viewHolder: BottomVH, position: Int) {
 
         val subcategory1 = mutableList.get(position)
         Glide.with(viewHolder.itemView)
@@ -41,11 +41,11 @@ class BottomAdapter(var context: Context) : RecyclerView.Adapter<BottomAdapter.M
             .into(viewHolder.image)
 
         viewHolder.text.text = subcategory1.name
+        viewHolder.rating.setScore(subcategory1?.star.toFloat()*2)
         viewHolder.text1.text = subcategory1.installedRange
 
         viewHolder.download.setOnClickListener {
-
-
+            rateApp(subcategory1.appLink)
         }
 
     }
@@ -66,7 +66,7 @@ class BottomAdapter(var context: Context) : RecyclerView.Adapter<BottomAdapter.M
         return mutableList.size;
     }
 
-    class MiddleVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class BottomVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var image: ImageView
         var text: TextView
         var text1: TextView

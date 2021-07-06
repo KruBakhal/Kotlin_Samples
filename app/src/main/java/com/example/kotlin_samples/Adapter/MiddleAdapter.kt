@@ -12,16 +12,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.kotlin_samples.Model.api.SubCategory
+import com.example.kotlin_samples.Model.api.Datum
 import com.example.kotlin_samples.Model.api.SubCategory__1
 import com.example.kotlin_samples.R
 
 class MiddleAdapter(var context: Context) : RecyclerView.Adapter<MiddleAdapter.MiddleVH>() {
 
-    var mutableList: MutableList<SubCategory__1> = ArrayList()
+    var mutableList: MutableList<Datum> = ArrayList()
 
-    fun renewItems(Datums: MutableList<SubCategory__1>) {
-        mutableList = Datums
+    fun renewItems(Datums: MutableList<Datum>) {
+        mutableList = ArrayList()
+        mutableList.addAll(Datums)
         notifyDataSetChanged()
     }
 
@@ -36,14 +37,14 @@ class MiddleAdapter(var context: Context) : RecyclerView.Adapter<MiddleAdapter.M
 
         val subcategory1 = mutableList.get(position)
         Glide.with(viewHolder.itemView)
-            .load(subcategory1.icon)
+            .load(subcategory1.thumbImage)
             .into(viewHolder.image)
 
         viewHolder.text.text = subcategory1.name
 
         viewHolder.download.setOnClickListener {
 
-
+            rateApp(subcategory1.packageName)
         }
 
     }
