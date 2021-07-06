@@ -173,5 +173,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun onClickStart(view: View) {
+        startActivity(Intent(context, MoreAppActivity::class.java))
+
+    }
+
 
 }

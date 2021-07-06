@@ -4,24 +4,33 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kotlin_samples.Model.api.MainResponse
-import kotlin.properties.ReadWriteProperty
-import kotlin.reflect.KProperty
+import com.example.kotlin_samples.NetworkClient.NetworkRetrofitInterface
 
-public class FetchLiveData : ViewModel() {
+public class FetchLiveData : ViewModel(), NetworkRetrofitInterface {
 
-    public var responseMainMutableLiveData: MutableLiveData<MainResponse>? = null
+    var responseMainMutableLiveData: MutableLiveData<MainResponse>? = null
+    var internetConnectivity: MutableLiveData<Boolean>? = null
+    var fetchRespostry: FetchRepository? = null
 
     public fun getMainResponse(): LiveData<MainResponse>? {
         if (responseMainMutableLiveData == null) {
             responseMainMutableLiveData = MutableLiveData<MainResponse>()
-            var fetchRepository = FetchRepository.getFetchRepositoryInstance()
-
+            fetchRespostry = FetchRepository.getFetchRepositoryInstance(this)
         }
         return responseMainMutableLiveData;
     }
 
     public fun getMainResponseData(): LiveData<MainResponse>? {
         return responseMainMutableLiveData
+    }
+
+    override fun onCallbackMainReponnse(list: MutableLiveData<MainResponse>) {
+        responseMainMutableLiveData?.value = list.value
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        fetchRespostry = null
     }
 }
 
