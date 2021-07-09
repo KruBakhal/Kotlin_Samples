@@ -71,7 +71,7 @@ class BottomAdapter(var context: Context) : RecyclerView.Adapter<BottomAdapter.B
         var text: TextView
         var text1: TextView
         var rating: RatingBar
-        var download: FrameLayout
+        var download: TextView
 
         init {
             image = itemView.findViewById(R.id.image)

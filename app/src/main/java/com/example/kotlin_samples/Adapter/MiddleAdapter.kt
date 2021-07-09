@@ -68,7 +68,7 @@ class MiddleAdapter(var context: Context) : RecyclerView.Adapter<MiddleAdapter.M
     class MiddleVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var image: ImageView
         var text: TextView
-        var download: FrameLayout
+        var download: TextView
 
         init {
             image = itemView.findViewById(R.id.image)

@@ -10,18 +10,15 @@ import retrofit2.http.Path
 
 public class NetwrokRetrofit {
 
-    companion object {
+    var BASE_URL = "http://161.35.119.227/artwork_cache/api/AdvertiseNewApplications/17/"
 
-        var BASE_URL = "http://161.35.119.227/artwork_cache/api/AdvertiseNewApplications/17/"
+    fun createNetworkInstance(): ApiInterface {
 
-        fun createNetworkInstance(): ApiInterface {
-
-            val retrofit = Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(BASE_URL)
-                .build()
-            return retrofit.create(ApiInterface::class.java)
-        }
+        val retrofit = Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(BASE_URL)
+            .build()
+        return retrofit.create(ApiInterface::class.java)
     }
 
     interface ApiInterface {

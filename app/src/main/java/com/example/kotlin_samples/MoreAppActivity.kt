@@ -2,6 +2,7 @@ package com.example.kotlin_samples
 
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +16,9 @@ import com.example.kotlin_samples.Model.api.SubCategory
 import com.example.kotlin_samples.Model.api.SubCategory__1
 import com.example.kotlin_samples.Repository.FetchLiveData
 import kotlinx.android.synthetic.main.activity_more_app.*
+import kotlinx.android.synthetic.main.lay_more_item.*
+import kotlinx.android.synthetic.main.lay_progress_item.*
+import kotlinx.android.synthetic.main.lay_retry_item.*
 
 class MoreAppActivity : AppCompatActivity() {
 
@@ -23,7 +27,8 @@ class MoreAppActivity : AppCompatActivity() {
     var context: Context = this
     var sliderAdapterExample: SliderAdapterExample? = null
     var fetchLiveData: FetchLiveData? = null
-//    var activityBinding: ActivityMoreAppBinding? = null
+
+    //    var activityBinding: ActivityMoreAppBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,13 +38,56 @@ class MoreAppActivity : AppCompatActivity() {
 
 
         fetchLiveData = ViewModelProvider(this).get(FetchLiveData::class.java)
+        fetchLiveData!!.setInterNetConnectivity_Context(this)
+        fetchLiveData?.getInternetConnectivity()?.observe(this, Observer { t: Boolean ->
+            if (t) {
+                btnStatus.setImageResource(R.drawable.outline_wifi_white_24)
+
+            } else {
+                btnStatus.setImageResource(R.drawable.outline_wifi_off_white_24)
+                if (fetchLiveData?.showProgressBar?.value == FetchLiveData.ProgressUIType.CANCEL
+                    && fetchLiveData?.responseMainMutableLiveData?.value?.appCenter == null
+                ) {
+                    lay_Retry.visibility = View.VISIBLE
+                    lay_Pg.visibility = View.GONE
+                    lay_More_item.visibility = View.GONE
+                }
+            }
+        })
+        fetchLiveData?.getShowProgressStatus()?.observe(
+            this,
+            Observer<FetchLiveData.ProgressUIType> { t: FetchLiveData.ProgressUIType? ->
+                if (t == FetchLiveData.ProgressUIType.SHOW) {
+                    progress_bar.visibility = View.VISIBLE
+                    lay_More_item.visibility = View.GONE
+                    lay_Retry.visibility = View.GONE
+                    lay_Pg.visibility = View.VISIBLE
+                } else if (t == FetchLiveData.ProgressUIType.DIMISS) {
+                    progress_bar.visibility = View.GONE
+                    lay_Pg.visibility = View.GONE
+                    lay_Retry.visibility = View.GONE
+                    lay_More_item.visibility = View.VISIBLE
+                } else {
+                    progress_bar.visibility = View.GONE
+                    lay_Pg.visibility = View.GONE
+                    lay_Retry.visibility = View.VISIBLE
+                    lay_More_item.visibility = View.GONE
+
+                }
+            })
+
         fetchLiveData!!.getMainResponse()
             ?.observe(this, Observer<MainResponse> { t: MainResponse? ->
                 sliderAdapterExample?.renewItems(t?.home?.get(0)?.subCategory as MutableList<SubCategory__1>)
                 middleAdapter?.renewItems(t?.data as MutableList<Datum>)
                 bottomAdapter?.renewItems(t?.appCenter?.get(0)?.subCategory as MutableList<SubCategory>)
-
             })
+
+        img12.setOnClickListener {
+
+            fetchLiveData?.retryCall();
+
+        }
 
         initAutoSliderAdapter();
         initMiddleAdapter();
