@@ -1,14 +1,16 @@
-package com.example.kotlin_samples.Repository
+package com.example.kotlin_samples.MoreScreen.Service
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
-import com.example.kotlin_samples.Model.api.MainResponse
-import com.example.kotlin_samples.MoreAppActivity
-import com.example.kotlin_samples.NetworkClient.Network_Retrofit_CallBack_Interface
+import com.example.kotlin_samples.MoreScreen.Model.api.MainResponse
+import com.example.kotlin_samples.MoreScreen.View.MoreAppActivity
+import com.example.kotlin_samples.MoreScreen.Service.NetworkClient.Network_Retrofit_CallBack_Interface
+import com.example.kotlin_samples.MoreScreen.Service.Repository.APIFetchService
+import com.example.kotlin_samples.MoreScreen.Service.Repository.InternetConnectivityLiveData
 
-public class FetchLiveData() : ViewModel(), Network_Retrofit_CallBack_Interface {
+public class FetchDataRepository() : ViewModel(), Network_Retrofit_CallBack_Interface {
 
     public enum class ProgressUIType {
         SHOW, DIMISS, CANCEL
@@ -16,7 +18,7 @@ public class FetchLiveData() : ViewModel(), Network_Retrofit_CallBack_Interface 
 
     var responseMainMutableLiveData: MutableLiveData<MainResponse>? = null
     var internetConnectivity: MutableLiveData<Boolean>? = null
-    var connecLiveData: ConnectionLiveData? = null
+    var connecLiveData: InternetConnectivityLiveData? = null
     var showProgressBar: MutableLiveData<ProgressUIType>? = null
 
     fun getMainResponse(): LiveData<MainResponse>? {
@@ -26,7 +28,7 @@ public class FetchLiveData() : ViewModel(), Network_Retrofit_CallBack_Interface 
 
             if (internetConnectivity?.value == true) {
 
-                FetchRepository().getFetchRepositoryInstance(this)
+                APIFetchService().getFetchRepositoryInstance(this)
             } else {
                 responseMainMutableLiveData = null
                 showProgressBar?.value = ProgressUIType.CANCEL
@@ -77,7 +79,10 @@ public class FetchLiveData() : ViewModel(), Network_Retrofit_CallBack_Interface 
     }
 
     fun setInterNetConnectivity_Context(context: MoreAppActivity) {
-        connecLiveData = ConnectionLiveData(context);
+        connecLiveData =
+            InternetConnectivityLiveData(
+                context
+            );
         connecLiveData!!.observe(context, Observer { connection ->
             if (connection.getIsConnected()) {
                 when (connection.getType()) {
@@ -100,7 +105,7 @@ public class FetchLiveData() : ViewModel(), Network_Retrofit_CallBack_Interface 
 
         showProgressBar?.value = ProgressUIType.SHOW
         if (internetConnectivity?.value == true) {
-            FetchRepository().getFetchRepositoryInstance(this)
+            APIFetchService().getFetchRepositoryInstance(this)
         } else {
             showProgressBar?.value = ProgressUIType.CANCEL
         }

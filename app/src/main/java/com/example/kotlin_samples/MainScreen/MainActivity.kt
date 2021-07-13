@@ -1,4 +1,4 @@
-package com.example.kotlin_samples
+package com.example.kotlin_samples.MainScreen
 
 import android.content.Context
 import android.content.Intent
@@ -8,6 +8,8 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.kotlin_samples.MoreScreen.View.MoreAppActivity
+import com.example.kotlin_samples.R
 import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult

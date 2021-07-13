@@ -1,4 +1,4 @@
-package com.example.kotlin_samples
+package com.example.kotlin_samples.MoreScreen.View
 
 import android.content.Context
 import android.os.Bundle
@@ -7,14 +7,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kotlin_samples.Adapter.BottomAdapter
-import com.example.kotlin_samples.Adapter.MiddleAdapter
-import com.example.kotlin_samples.Adapter.SliderAdapterExample
-import com.example.kotlin_samples.Model.api.Datum
-import com.example.kotlin_samples.Model.api.MainResponse
-import com.example.kotlin_samples.Model.api.SubCategory
-import com.example.kotlin_samples.Model.api.SubCategory__1
-import com.example.kotlin_samples.Repository.FetchLiveData
+import com.example.kotlin_samples.MoreScreen.Adapter.BottomAdapter
+import com.example.kotlin_samples.MoreScreen.Adapter.MiddleAdapter
+import com.example.kotlin_samples.MoreScreen.Adapter.SliderAdapterExample
+import com.example.kotlin_samples.MoreScreen.Model.api.Datum
+import com.example.kotlin_samples.MoreScreen.Model.api.MainResponse
+import com.example.kotlin_samples.MoreScreen.Model.api.SubCategory
+import com.example.kotlin_samples.MoreScreen.Model.api.SubCategory__1
+import com.example.kotlin_samples.R
+import com.example.kotlin_samples.MoreScreen.Service.FetchDataRepository
 import kotlinx.android.synthetic.main.activity_more_app.*
 import kotlinx.android.synthetic.main.lay_more_item.*
 import kotlinx.android.synthetic.main.lay_progress_item.*
@@ -26,7 +27,7 @@ class MoreAppActivity : AppCompatActivity() {
     private lateinit var middleAdapter: MiddleAdapter
     var context: Context = this
     var sliderAdapterExample: SliderAdapterExample? = null
-    var fetchLiveData: FetchLiveData? = null
+    var fetchLiveData: FetchDataRepository? = null
 
     //    var activityBinding: ActivityMoreAppBinding? = null
 
@@ -37,15 +38,17 @@ class MoreAppActivity : AppCompatActivity() {
 //        setContentView(activityBinding!!.root)
 
 
-        fetchLiveData = ViewModelProvider(this).get(FetchLiveData::class.java)
+        fetchLiveData = ViewModelProvider(this).get(FetchDataRepository::class.java)
         fetchLiveData!!.setInterNetConnectivity_Context(this)
+
+        // Internet Connectivity
         fetchLiveData?.getInternetConnectivity()?.observe(this, Observer { t: Boolean ->
             if (t) {
                 btnStatus.setImageResource(R.drawable.outline_wifi_white_24)
 
             } else {
                 btnStatus.setImageResource(R.drawable.outline_wifi_off_white_24)
-                if (fetchLiveData?.showProgressBar?.value == FetchLiveData.ProgressUIType.CANCEL
+                if (fetchLiveData?.showProgressBar?.value == FetchDataRepository.ProgressUIType.CANCEL
                     && fetchLiveData?.responseMainMutableLiveData?.value?.appCenter == null
                 ) {
                     lay_Retry.visibility = View.VISIBLE
@@ -54,15 +57,16 @@ class MoreAppActivity : AppCompatActivity() {
                 }
             }
         })
+        // Progress Layout Display
         fetchLiveData?.getShowProgressStatus()?.observe(
             this,
-            Observer<FetchLiveData.ProgressUIType> { t: FetchLiveData.ProgressUIType? ->
-                if (t == FetchLiveData.ProgressUIType.SHOW) {
+            Observer<FetchDataRepository.ProgressUIType> { t: FetchDataRepository.ProgressUIType? ->
+                if (t == FetchDataRepository.ProgressUIType.SHOW) {
                     progress_bar.visibility = View.VISIBLE
                     lay_More_item.visibility = View.GONE
                     lay_Retry.visibility = View.GONE
                     lay_Pg.visibility = View.VISIBLE
-                } else if (t == FetchLiveData.ProgressUIType.DIMISS) {
+                } else if (t == FetchDataRepository.ProgressUIType.DIMISS) {
                     progress_bar.visibility = View.GONE
                     lay_Pg.visibility = View.GONE
                     lay_Retry.visibility = View.GONE
@@ -76,6 +80,7 @@ class MoreAppActivity : AppCompatActivity() {
                 }
             })
 
+        // UI Data
         fetchLiveData!!.getMainResponse()
             ?.observe(this, Observer<MainResponse> { t: MainResponse? ->
                 sliderAdapterExample?.renewItems(t?.home?.get(0)?.subCategory as MutableList<SubCategory__1>)
@@ -83,9 +88,16 @@ class MoreAppActivity : AppCompatActivity() {
                 bottomAdapter?.renewItems(t?.appCenter?.get(0)?.subCategory as MutableList<SubCategory>)
             })
 
+
+        // click event and init UI
         img12.setOnClickListener {
 
             fetchLiveData?.retryCall();
+
+        }
+        btnBack.setOnClickListener {
+
+            onBackPressed()
 
         }
 

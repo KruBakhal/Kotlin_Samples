@@ -1,24 +1,24 @@
-package com.example.kotlin_samples.Repository
+package com.example.kotlin_samples.MoreScreen.Service.Repository
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.kotlin_samples.Model.api.MainResponse
-import com.example.kotlin_samples.NetworkClient.Network_Retrofit_CallBack_Interface
-import com.example.kotlin_samples.NetworkClient.NetwrokRetrofit
+import com.example.kotlin_samples.MoreScreen.Model.api.MainResponse
+import com.example.kotlin_samples.MoreScreen.Service.NetworkClient.Network_Retrofit_CallBack_Interface
+import com.example.kotlin_samples.MoreScreen.Service.NetworkClient.NetwrokRetrofit
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-public class FetchRepository {
+public class APIFetchService {
 
 
     lateinit var networkInterface: Network_Retrofit_CallBack_Interface
-    var fetchRepository: FetchRepository? = null
+    var fetchRepository: APIFetchService? = null
     var cout: Int = 0;
 
-    fun getFetchRepositoryInstance(param: Network_Retrofit_CallBack_Interface): FetchRepository? {
+    fun getFetchRepositoryInstance(param: Network_Retrofit_CallBack_Interface): APIFetchService? {
         if (fetchRepository == null) {
-            fetchRepository = FetchRepository()
+            fetchRepository = APIFetchService()
             networkInterface = param
             fecthDataFromNetwork()
             cout++

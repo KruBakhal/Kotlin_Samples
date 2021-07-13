@@ -1,5 +1,5 @@
 
-package com.example.kotlin_samples.Model.api;
+package com.example.kotlin_samples.MoreScreen.Model.api;
 
 import java.util.List;
 

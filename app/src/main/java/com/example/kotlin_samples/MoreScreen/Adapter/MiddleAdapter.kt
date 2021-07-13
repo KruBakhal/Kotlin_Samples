@@ -1,4 +1,4 @@
-package com.example.kotlin_samples.Adapter
+package com.example.kotlin_samples.MoreScreen.Adapter
 
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -7,45 +7,42 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.chaek.android.RatingBar
-import com.example.kotlin_samples.Model.api.SubCategory
+import com.example.kotlin_samples.MoreScreen.Model.api.Datum
 import com.example.kotlin_samples.R
 
-class BottomAdapter(var context: Context) : RecyclerView.Adapter<BottomAdapter.BottomVH>() {
+class MiddleAdapter(var context: Context) : RecyclerView.Adapter<MiddleAdapter.MiddleVH>() {
 
-    var mutableList: MutableList<SubCategory> = ArrayList()
+    var mutableList: MutableList<Datum> = ArrayList()
 
-    fun renewItems(Datums: MutableList<SubCategory>) {
+    fun renewItems(Datums: MutableList<Datum>) {
         mutableList = ArrayList()
         mutableList.addAll(Datums)
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BottomVH {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MiddleVH {
 
         var inflater =
-            LayoutInflater.from(parent.context).inflate(R.layout.lay_bottom_item, parent, false)
-        return BottomVH(inflater)
+            LayoutInflater.from(parent.context).inflate(R.layout.lay_middle_item, parent, false)
+        return MiddleVH(inflater)
     }
 
-    override fun onBindViewHolder(viewHolder: BottomVH, position: Int) {
+    override fun onBindViewHolder(viewHolder: MiddleVH, position: Int) {
 
         val subcategory1 = mutableList.get(position)
         Glide.with(viewHolder.itemView)
-            .load(subcategory1.icon)
+            .load(subcategory1.thumbImage)
             .into(viewHolder.image)
 
         viewHolder.text.text = subcategory1.name
-        viewHolder.rating.setScore(subcategory1?.star.toFloat()*2)
-        viewHolder.text1.text = subcategory1.installedRange
 
         viewHolder.download.setOnClickListener {
-            rateApp(subcategory1.appLink)
+
+            rateApp(subcategory1.packageName)
         }
 
     }
@@ -66,19 +63,15 @@ class BottomAdapter(var context: Context) : RecyclerView.Adapter<BottomAdapter.B
         return mutableList.size;
     }
 
-    class BottomVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class MiddleVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var image: ImageView
         var text: TextView
-        var text1: TextView
-        var rating: RatingBar
         var download: TextView
 
         init {
             image = itemView.findViewById(R.id.image)
             text = itemView.findViewById(R.id.text)
             download = itemView.findViewById(R.id.download)
-            text1 = itemView.findViewById(R.id.text1)
-            rating = itemView.findViewById(R.id.rating)
         }
 
     }

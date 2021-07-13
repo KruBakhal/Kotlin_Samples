@@ -1,17 +1,14 @@
-package com.example.kotlin_samples.Adapter
+package com.example.kotlin_samples.MoreScreen.Adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.example.kotlin_samples.Model.api.SubCategory
-import com.example.kotlin_samples.Model.api.SubCategory__1
+import com.example.kotlin_samples.MoreScreen.Model.api.SubCategory__1
 import com.example.kotlin_samples.R
 import com.smarteist.autoimageslider.SliderViewAdapter
-import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -52,11 +49,11 @@ class SliderAdapterExample(private val context: Context) :
             .into(viewHolder.imageGifContainer)
 
         viewHolder.itemView.setOnClickListener {
-            Toast.makeText(
+            /*Toast.makeText(
                 context,
                 "This is item in position $position",
                 Toast.LENGTH_SHORT
-            ).show()
+            ).show()*/
         }
     }
 

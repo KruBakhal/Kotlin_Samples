@@ -1,11 +1,11 @@
 
-package com.example.kotlin_samples.Model.api;
+package com.example.kotlin_samples.MoreScreen.Model.api;
 
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class SubCategory {
+public class SubCategory__1 {
 
     @SerializedName("id")
     @Expose

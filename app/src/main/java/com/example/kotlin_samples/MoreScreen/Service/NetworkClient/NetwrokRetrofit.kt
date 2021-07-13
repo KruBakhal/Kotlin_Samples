@@ -1,7 +1,6 @@
-package com.example.kotlin_samples.NetworkClient
+package com.example.kotlin_samples.MoreScreen.Service.NetworkClient
 
-import android.graphics.Movie
-import com.example.kotlin_samples.Model.api.MainResponse
+import com.example.kotlin_samples.MoreScreen.Model.api.MainResponse
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

@@ -40,9 +40,9 @@
 
 
         <activity
-            android:name=".MoreAppActivity" />
+            android:name=".MoreScreen.View.MoreAppActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".MainScreen.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

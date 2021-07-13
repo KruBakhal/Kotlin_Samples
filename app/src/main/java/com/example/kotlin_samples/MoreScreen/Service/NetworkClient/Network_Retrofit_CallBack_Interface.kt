@@ -1,7 +1,7 @@
-package com.example.kotlin_samples.NetworkClient
+package com.example.kotlin_samples.MoreScreen.Service.NetworkClient
 
 import androidx.lifecycle.MutableLiveData
-import com.example.kotlin_samples.Model.api.MainResponse
+import com.example.kotlin_samples.MoreScreen.Model.api.MainResponse
 
 public interface Network_Retrofit_CallBack_Interface {
 

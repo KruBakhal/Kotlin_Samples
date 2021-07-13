@@ -1,4 +1,4 @@
-package com.example.kotlin_samples.Model;
+package com.example.kotlin_samples.MoreScreen.Model;
 
 public class SliderItem {
 

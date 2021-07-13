@@ -1,4 +1,4 @@
-package com.example.kotlin_samples.Repository;
+package com.example.kotlin_samples.MoreScreen.Service.Repository;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -9,14 +9,14 @@ import android.net.NetworkInfo;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.kotlin_samples.Model.ConnectionModel;
+import com.example.kotlin_samples.MoreScreen.Model.ConnectionModel;
 
 
-public class ConnectionLiveData extends LiveData<ConnectionModel> {
+public class InternetConnectivityLiveData extends LiveData<ConnectionModel> {
 
     private Context context;
 
-    public ConnectionLiveData(Context context) {
+    public InternetConnectivityLiveData(Context context) {
         this.context = context;
     }
 
