@@ -1,4 +1,4 @@
-package com.example.kotlin_samples.MoreScreen.Service.NetworkClient
+package com.example.kotlin_samples.MoreScreen.Service.Callback
 
 import androidx.lifecycle.MutableLiveData
 import com.example.kotlin_samples.MoreScreen.Model.api.MainResponse

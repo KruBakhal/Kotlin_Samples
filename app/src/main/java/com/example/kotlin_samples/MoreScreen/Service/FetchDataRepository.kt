@@ -6,7 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.example.kotlin_samples.MoreScreen.Model.api.MainResponse
 import com.example.kotlin_samples.MoreScreen.View.MoreAppActivity
-import com.example.kotlin_samples.MoreScreen.Service.NetworkClient.Network_Retrofit_CallBack_Interface
+import com.example.kotlin_samples.MoreScreen.Service.Callback.Network_Retrofit_CallBack_Interface
 import com.example.kotlin_samples.MoreScreen.Service.Repository.APIFetchService
 import com.example.kotlin_samples.MoreScreen.Service.Repository.InternetConnectivityLiveData
 

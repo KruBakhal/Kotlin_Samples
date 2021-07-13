@@ -3,7 +3,7 @@ package com.example.kotlin_samples.MoreScreen.Service.Repository
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.kotlin_samples.MoreScreen.Model.api.MainResponse
-import com.example.kotlin_samples.MoreScreen.Service.NetworkClient.Network_Retrofit_CallBack_Interface
+import com.example.kotlin_samples.MoreScreen.Service.Callback.Network_Retrofit_CallBack_Interface
 import com.example.kotlin_samples.MoreScreen.Service.NetworkClient.NetwrokRetrofit
 import retrofit2.Call
 import retrofit2.Callback
