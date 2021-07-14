@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlin_samples.MoreScreen.View.MoreAppActivity
 import com.example.kotlin_samples.R
+import com.example.kotlin_samples.RandomCalculatorGame.Screen.GameRoundActivity
 import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
@@ -177,6 +178,11 @@ class MainActivity : AppCompatActivity() {
 
     fun onClickStart(view: View) {
         startActivity(Intent(context, MoreAppActivity::class.java))
+
+    }
+
+    fun onClickGame(view: View) {
+        startActivity(Intent(context, GameRoundActivity::class.java))
 
     }
 
