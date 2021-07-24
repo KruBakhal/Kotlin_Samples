@@ -17,11 +17,23 @@
         android:theme="@style/Theme.Kotlin_Samples"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".RandomCalculatorGame.Screen.ResultActivity"
+            android:name=".DayDreamSoft.SecondActivity"
             android:screenOrientation="portrait"></activity>
         <activity
+            android:name=".DayDreamSoft.FirstActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".RandomCalculatorGame.Screen.ResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".RandomCalculatorGame.Screen.GameRoundActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -47,11 +59,6 @@
         <activity
             android:name=".MainScreen.MainActivity"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
     </application>
