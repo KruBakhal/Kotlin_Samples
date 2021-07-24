@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.kotlin_samples.DayDreamSoft.FirstActivity
 import com.example.kotlin_samples.MoreScreen.View.MoreAppActivity
 import com.example.kotlin_samples.R
 import com.example.kotlin_samples.RandomCalculatorGame.Screen.GameRoundActivity
@@ -183,6 +184,11 @@ class MainActivity : AppCompatActivity() {
 
     fun onClickGame(view: View) {
         startActivity(Intent(context, GameRoundActivity::class.java))
+
+    }
+
+    fun onClickDayDreamSoft(view: View) {
+        startActivity(Intent(context, FirstActivity::class.java))
 
     }
 

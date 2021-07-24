@@ -49,7 +49,7 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
+        android:layout_width="135dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_25sdp"
         android:onClick="onClickStart"
@@ -60,7 +60,7 @@
 
     <Button
         android:id="@+id/Game"
-        android:layout_width="wrap_content"
+        android:layout_width="136dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_25sdp"
         android:onClick="onClickGame"
@@ -81,5 +81,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="136dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:onClick="onClickDayDreamSoft"
+        android:text="DayDreamSoft"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lay2" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>
