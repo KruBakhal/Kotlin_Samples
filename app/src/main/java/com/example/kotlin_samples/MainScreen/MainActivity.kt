@@ -6,12 +6,14 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlin_samples.DayDreamSoft.FirstActivity
 import com.example.kotlin_samples.MoreScreen.View.MoreAppActivity
 import com.example.kotlin_samples.R
 import com.example.kotlin_samples.RandomCalculatorGame.Screen.GameRoundActivity
+import com.example.myapplication.TicTacTo.TicTacActivity
 import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
@@ -43,7 +45,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         context = this;
-
+        findViewById<Button>(R.id.button5).setOnClickListener {
+            onClickTicToc(it)
+        }
         googleSetupProcess();
 
         facebookSetupProcess()
@@ -189,6 +193,11 @@ class MainActivity : AppCompatActivity() {
 
     fun onClickDayDreamSoft(view: View) {
         startActivity(Intent(context, FirstActivity::class.java))
+
+    }
+
+    fun onClickTicToc(view: View) {
+        startActivity(Intent(context, TicTacActivity::class.java))
 
     }
 
